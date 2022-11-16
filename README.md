@@ -23,4 +23,4 @@ The music in game is disabled by default, but it can be turned on.
 The original game was made by (c) Jesse Venbrux, at http://karoshigame.venbrux.com/.
 Font VITAMIN by (c) Jakob Fischer at www.pizzadude.dk,  all rights reserved.
 
-Made in 2019.
+This port was made in 2019.
