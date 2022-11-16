@@ -1,0 +1,23 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://levels/level_default.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/level26/level26.gd" type="Script" id=2]
+[ext_resource path="res://levels/level26/image 0.png" type="Texture" id=3]
+[ext_resource path="res://props/boss/boss.tscn" type="PackedScene" id=4]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=5]
+
+[node name="26" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="image 0" type="Sprite" parent="." index="1"]
+position = Vector2( 320, 144 )
+texture = ExtResource( 3 )
+
+[node name="decoration" parent="." index="4"]
+tile_data = PoolIntArray( 786432, 0, 0, 786433, 0, 0, 786434, 0, 0, 786435, 0, 0, 786436, 0, 0, 786437, 0, 0, 786438, 0, 0, 786439, 0, 0, 786440, 0, 0, 786441, 0, 0, 786442, 0, 0, 786443, 0, 0, 786444, 0, 0, 786445, 0, 0, 786446, 0, 0, 786447, 0, 0, 786448, 0, 0, 786449, 0, 0, 786450, 0, 0, 786451, 0, 0 )
+
+[node name="boss" parent="." index="6" instance=ExtResource( 4 )]
+position = Vector2( 511, 319 )
+
+[node name="player" parent="." index="7" instance=ExtResource( 5 )]
+position = Vector2( 30, 360 )

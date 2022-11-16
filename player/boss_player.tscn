@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://player/boss_player.gd" type="Script" id=1]
+[ext_resource path="res://props/boss/boss_1.png" type="Texture" id=2]
+[ext_resource path="res://props/boss/explode/explode.tscn" type="PackedScene" id=3]
+[ext_resource path="res://player/ui/ui.tscn" type="PackedScene" id=4]
+
+[node name="boss_player" type="KinematicBody2D"]
+collision_layer = 32
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -85, -55, -85, 34, -25, 34, -25, 65, 25, 65, 25, 34, 85, 34, 85, -55 )
+
+[node name="boss_area" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boss_area"]
+polygon = PoolVector2Array( -85, -55, -85, 34, -25, 34, -25, 65, 25, 65, 25, 34, 85, 34, 85, -55 )
+
+[node name="explode" parent="." instance=ExtResource( 3 )]
+
+[node name="ui" parent="." instance=ExtResource( 4 )]
+[connection signal="area_entered" from="boss_area" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="boss_area" to="." method="_on_Area2D_body_entered"]

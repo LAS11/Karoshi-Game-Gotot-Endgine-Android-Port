@@ -1,0 +1,26 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://levels/level5/electro_brick/electro_brick.gd" type="Script" id=1]
+[ext_resource path="res://levels/level5/electro_brick/shadow.png" type="Texture" id=2]
+[ext_resource path="res://levels/level5/electro_brick/eblock.png" type="Texture" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="electro_brick" type="StaticBody2D" groups=[
+"electro_bricks",
+]]
+script = ExtResource( 1 )
+
+[node name="shadow" type="Sprite" parent="."]
+visible = false
+self_modulate = Color( 1, 1, 1, 0.27451 )
+texture = ExtResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+region_rect = Rect2( 78.9009, 40.1004, 83.1614, 16.9403 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+disabled = true

@@ -1,0 +1,82 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://props/boss/boss.gd" type="Script" id=1]
+[ext_resource path="res://props/boss/boss_1.png" type="Texture" id=2]
+[ext_resource path="res://props/boss/boss_2.png" type="Texture" id=3]
+[ext_resource path="res://levels/level20/fire.tscn" type="PackedScene" id=4]
+[ext_resource path="res://props/boss/explode/explode.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "fall"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = false
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 0 ), Vector2( 0, 290 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:rotation_degrees")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, -439.5 ]
+}
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 2 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "waka_waka",
+"speed": 5.0
+} ]
+
+[node name="boss" type="KinematicBody2D"]
+collision_layer = 32
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+anims/fall = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 2 )
+animation = "idle"
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+visible = false
+polygon = PoolVector2Array( -85, -55, -85, 34, -25, 34, -25, 65, 25, 65, 25, 34, 85, 34, 85, -55 )
+
+[node name="boss_area" type="Area2D" parent="."]
+collision_mask = 5
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boss_area"]
+polygon = PoolVector2Array( -85, -55, -85, 34, -25, 34, -25, 65, 25, 65, 25, 34, 85, 34, 85, -55 )
+
+[node name="fire" parent="." instance=ExtResource( 4 )]
+visible = false
+position = Vector2( 1, 145 )
+frame = 3
+
+[node name="explode" parent="." instance=ExtResource( 5 )]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
+[connection signal="area_entered" from="boss_area" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="boss_area" to="." method="_on_Area2D_body_entered"]

@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/level14.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/level16/level16.gd" type="Script" id=2]
+
+[node name="15" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="geometry" parent="." index="1"]
+tile_data = PoolIntArray( 786431, 0, 0, 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0, 720916, 0, 0 )
+
+[node name="crate" parent="." index="3"]
+position = Vector2( 592, 16 )
+
+[node name="CollisionShape2D" parent="level_border" index="0"]
+position = Vector2( -62, 240 )
+
+[node name="CollisionShape2D2" parent="level_border" index="1"]
+position = Vector2( 702, 240 )

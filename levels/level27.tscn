@@ -1,0 +1,35 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://levels/level_default.tscn" type="PackedScene" id=1]
+[ext_resource path="res://levels/level27/level27.gd" type="Script" id=2]
+[ext_resource path="res://levels/level27/image 0.png" type="Texture" id=3]
+[ext_resource path="res://levels/level26/image 0.png" type="Texture" id=4]
+[ext_resource path="res://props/boss/boss.tscn" type="PackedScene" id=5]
+[ext_resource path="res://levels/level18/hidden_brick.tscn" type="PackedScene" id=6]
+[ext_resource path="res://player/player.tscn" type="PackedScene" id=7]
+
+[node name="27" index="0" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+
+[node name="image 1" type="Sprite" parent="." index="1"]
+position = Vector2( 320, 64 )
+texture = ExtResource( 3 )
+
+[node name="image 0" type="Sprite" parent="." index="2"]
+position = Vector2( 320, 160 )
+texture = ExtResource( 4 )
+
+[node name="geometry" parent="." index="3"]
+tile_data = PoolIntArray( 720896, 0, 0, 720897, 0, 0, 720898, 0, 0, 720899, 0, 0, 720900, 0, 0, 720901, 0, 0, 720902, 0, 0, 720903, 0, 0, 720904, 0, 0, 720905, 0, 0, 720906, 0, 0, 720907, 0, 0, 720908, 0, 0, 720909, 0, 0, 720910, 0, 0, 720911, 0, 0, 720912, 0, 0, 720913, 0, 0, 720914, 0, 0, 720915, 0, 0 )
+
+[node name="overlay" parent="." index="6"]
+visible = false
+
+[node name="boss" parent="." index="8" instance=ExtResource( 5 )]
+position = Vector2( 510, 287 )
+
+[node name="hidden_brick" parent="." index="9" instance=ExtResource( 6 )]
+position = Vector2( 624, 272 )
+
+[node name="player" parent="." index="10" instance=ExtResource( 7 )]
+position = Vector2( 31.5, 324 )
