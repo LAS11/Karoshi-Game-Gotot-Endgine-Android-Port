@@ -17,6 +17,7 @@ The music in game is disabled by default, but it can be turned on.
 Проекту не хватает полировки физики предметов, присутствуют графические артефакты и глюки в управлении.
 Музыка в проекте отключена, но её легко включить обратно.
 
+![изображение](https://user-images.githubusercontent.com/5257092/202221354-5e888c7b-f27e-46a9-8e09-8d3e0879a55c.png)
 
 
 
