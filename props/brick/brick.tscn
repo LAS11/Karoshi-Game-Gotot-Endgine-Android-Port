@@ -6,9 +6,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[node name="brick" type="StaticBody2D" groups=[
-"geometry",
-]]
+[node name="Brick" type="StaticBody2D" groups=["geometry"]]
 
 [node name="Sprite2" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0.27451 )

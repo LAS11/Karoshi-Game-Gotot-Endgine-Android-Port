@@ -47,7 +47,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[node name="boss" type="KinematicBody2D"]
+[node name="Boss" type="KinematicBody2D"]
 collision_layer = 32
 script = ExtResource( 1 )
 __meta__ = {
@@ -65,18 +65,18 @@ animation = "idle"
 visible = false
 polygon = PoolVector2Array( -85, -55, -85, 34, -25, 34, -25, 65, 25, 65, 25, 34, 85, 34, 85, -55 )
 
-[node name="boss_area" type="Area2D" parent="."]
+[node name="Area2D" type="Area2D" parent="."]
 collision_mask = 5
 
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="boss_area"]
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PoolVector2Array( -85, -55, -85, 34, -25, 34, -25, 65, 25, 65, 25, 34, 85, 34, 85, -55 )
 
-[node name="fire" parent="." instance=ExtResource( 4 )]
+[node name="Fire" parent="." instance=ExtResource( 4 )]
 visible = false
 position = Vector2( 1, 145 )
-frame = 3
 
-[node name="explode" parent="." instance=ExtResource( 5 )]
+[node name="Explode" parent="." instance=ExtResource( 5 )]
+
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="area_entered" from="boss_area" to="." method="_on_Area2D_area_entered"]
-[connection signal="body_entered" from="boss_area" to="." method="_on_Area2D_body_entered"]
+[connection signal="area_entered" from="Area2D" to="." method="_on_Area2D_area_entered"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_Area2D_body_entered"]

@@ -40,7 +40,7 @@ func _physics_process(delta):
 	current_scene_number = get_tree().get_current_scene().get_name().to_int()
 	
 	if (can_fly == true):
-		$wings_sprite.show()
+		$Wings.show()
 	
 	if (current_scene_number != 21):
 		left_pressed = Input.is_action_pressed("ui_left")
@@ -88,7 +88,7 @@ func _physics_process(delta):
 	if shoot_pressed:
 		if can_shoot:
 			Input.action_release("ui_shoot")
-			$shoot_timer.start()
+			$ShootTimer.start()
 			can_shoot = false
 			if has_weapon:
 				if ($RayCast2D.is_colliding() == false):
@@ -103,16 +103,16 @@ func _physics_process(delta):
 					bullet.position = $Position2D.global_position
 					get_parent().add_child(bullet)
 			else:
-				$msg.modulate = Color(1, 1, 1, 1)
-				$msg/Timer.start()
+				$Message.modulate = Color(1, 1, 1, 1)
+				$Message/Timer.start()
 	
 	#прыжки
 	if (velocity.y != 0):
 		in_air = true
-		$wings_sprite.play("fly")
+		$Wings.play("fly")
 	else:
 		in_air = false
-		$wings_sprite.play("idle")
+		$Wings.play("idle")
 	if (Input.is_action_pressed("ui_jump")):
 		#Input.action_release("ui_jump")
 		if can_fly:
@@ -158,10 +158,10 @@ func kill():
 
 
 func _on_msg_Timer_timeout():
-	$msg/Tween.interpolate_property($msg, 'modulate', Color(1, 1, 1, 1), 
+	$Message/Tween.interpolate_property($Message, 'modulate', Color(1, 1, 1, 1), 
 									Color(1, 1, 1, 0), 1.0, Tween.TRANS_LINEAR, 
 									Tween.EASE_IN_OUT)
-	$msg/Tween.start()
+	$Message/Tween.start()
 
 #таймер сбрасывает возможность стрельбы
 func _on_shoot_timer_timeout():

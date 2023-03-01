@@ -4,16 +4,14 @@ const SPEED = 300
 const JUMP_HEIGHT = 1250
 const GRAVITY = 85
 const FLOOR_NORMAL = Vector2(0, -1)
+
 var velocity = Vector2()
 var in_air = false
 var on_ground = true
 var destroyed = false
+
+
 var current_level_number
-
-func _on_Area2D_body_entered(body):
-	if (body.get_name() == "player"):
-		body.kill()
-
 func _ready():
 	current_level_number = get_tree().get_current_scene().get_name().to_int()
 	if (current_level_number == 26):
@@ -23,6 +21,7 @@ func _ready():
 		set_physics_process(false)
 		velocity = Vector2(-SPEED, -1445)
 	set_process(false)
+
 
 func _physics_process(delta):
 	if (velocity.y != 0):
@@ -59,17 +58,25 @@ func _physics_process(delta):
 
 	velocity = move_and_slide(velocity, FLOOR_NORMAL)
 
+
 func fall():
 	#set_physics_process(false)
 	destroyed = true
 	on_ground = true
 	$CollisionPolygon2D.set_disabled(true)
-	$fire.hide()
+	$Fire.hide()
 	$AnimationPlayer.play("fall")
 
+
 func _on_AnimationPlayer_animation_finished(anim_name):
-	$boss_area.set_monitoring(false)
+	$Area2D.set_monitoring(false)
+
 
 func _on_Area2D_area_entered(area):
 	if area.get_name() == "player_doll":
 		area.kill()
+
+
+func _on_Area2D_body_entered(body):
+	if (body.get_name() == "player"):
+		body.kill()

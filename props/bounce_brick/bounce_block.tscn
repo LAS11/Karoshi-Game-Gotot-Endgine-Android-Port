@@ -5,9 +5,7 @@
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 16, 16 )
 
-[node name="bounce_block" type="StaticBody2D" groups=[
-"bounce_blocks",
-]]
+[node name="BounceBlock" type="StaticBody2D" groups=["bounce_blocks"]]
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )

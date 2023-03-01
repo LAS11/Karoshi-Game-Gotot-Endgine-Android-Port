@@ -18,6 +18,6 @@ func _ready():
 	file.close()
 
 func _on_Button_pressed():
-	var levelNumber = $SpinBox.get_line_edit().text.to_int()
-	if (levelNumber > -1) and (levelNumber < 31) and (levelNumber <= progress):
-		get_tree().change_scene("res://levels/level" + String(levelNumber) + ".tscn")
+	var level_number = $SpinBox.get_line_edit().text.to_int()
+	if (level_number > -1) and (level_number < 31) and (level_number <= progress):
+		get_tree().change_scene("res://levels/level" + String(level_number) + ".tscn")

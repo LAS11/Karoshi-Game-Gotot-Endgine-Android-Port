@@ -21,15 +21,15 @@
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 2 ) ],
-"loop": true,
-"name": "idle",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 3 ), ExtResource( 2 ), ExtResource( 4 ) ],
 "loop": true,
 "name": "fly",
 "speed": 20.0
+}, {
+"frames": [ ExtResource( 2 ) ],
+"loop": true,
+"name": "idle",
+"speed": 5.0
 } ]
 
 [sub_resource type="SpriteFrames" id=2]
@@ -39,37 +39,37 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
-"loop": true,
-"name": "shoot_left",
-"speed": 5.0
-}, {
-"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
-"loop": true,
-"name": "walk",
-"speed": 14.0
-}, {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "shocked",
 "speed": 1.87
 }, {
+"frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
+"loop": true,
+"name": "shoot_left",
+"speed": 5.0
+}, {
 "frames": [ ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ) ],
 "loop": true,
 "name": "shoot_right",
 "speed": 1.0
+}, {
+"frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
+"loop": true,
+"name": "walk",
+"speed": 14.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 8.5, 15.5 )
 
-[node name="player" type="KinematicBody2D"]
+[node name="Player" type="KinematicBody2D"]
 collision_layer = 4
 collision_mask = 9
 collision/safe_margin = 0.16
 script = ExtResource( 1 )
 
-[node name="wings_sprite" type="AnimatedSprite" parent="."]
+[node name="Wings" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 1 )
 animation = "idle"
@@ -84,25 +84,25 @@ playing = true
 position = Vector2( -0.5, 0.5 )
 shape = SubResource( 3 )
 
-[node name="msg" type="Sprite" parent="."]
+[node name="Message" type="Sprite" parent="."]
 modulate = Color( 1, 1, 1, 0 )
 position = Vector2( 60, -50 )
 texture = ExtResource( 17 )
 
-[node name="Timer" type="Timer" parent="msg"]
+[node name="Timer" type="Timer" parent="Message"]
 wait_time = 2.0
 one_shot = true
 
-[node name="Tween" type="Tween" parent="msg"]
+[node name="Tween" type="Tween" parent="Message"]
 
 [node name="Position2D" type="Position2D" parent="."]
 position = Vector2( 25, 0 )
 
-[node name="shoot_timer" type="Timer" parent="."]
+[node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[node name="ui" parent="." instance=ExtResource( 18 )]
+[node name="UI" parent="." instance=ExtResource( 18 )]
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
@@ -111,5 +111,5 @@ enabled = true
 cast_to = Vector2( 0, 25 )
 collision_mask = 9
 
-[connection signal="timeout" from="msg/Timer" to="." method="_on_msg_Timer_timeout"]
-[connection signal="timeout" from="shoot_timer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Message/Timer" to="." method="_on_msg_Timer_timeout"]
+[connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
