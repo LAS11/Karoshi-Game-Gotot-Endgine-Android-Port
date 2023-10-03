@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://ui/blood_explosion/image 7.png" type="Texture" id=2]
+[ext_resource path="res://ui/blood_explosion/image 3.png" type="Texture" id=3]
+[ext_resource path="res://ui/blood_explosion/image 4.png" type="Texture" id=4]
+[ext_resource path="res://ui/blood_explosion/image 6.png" type="Texture" id=5]
+[ext_resource path="res://ui/blood_explosion/image 5.png" type="Texture" id=6]
+[ext_resource path="res://ui/blood_explosion/image 2.png" type="Texture" id=7]
+[ext_resource path="res://ui/blood_explosion/image 1.png" type="Texture" id=8]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "blood_explosion"
+script/source = "extends Control
+# Сцена кровавого взрыва
+
+signal explosion_finished
+
+const END_FRAME_NUM: = 6
+const START_FRAME_NUM: = 0
+
+
+func _ready():
+	set_process(false)
+	$AnimatedSprite.visible = false
+
+
+func play():
+	$AnimatedSprite.visible = true
+	$AnimatedSprite.play(\"explosion\")
+	set_process(true)
+
+
+func _on_AnimatedSprite_animation_finished():
+	emit_signal(\"explosion_finished\")
+"
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 8 ), ExtResource( 7 ), ExtResource( 3 ), ExtResource( 4 ), ExtResource( 6 ), ExtResource( 5 ), ExtResource( 2 ) ],
+"loop": false,
+"name": "explosion",
+"speed": 20.0
+} ]
+
+[node name="BloodExplosion" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 320, 240 )
+scale = Vector2( 10, 10 )
+frames = SubResource( 2 )
+animation = "explosion"
+
+[connection signal="animation_finished" from="AnimatedSprite" to="." method="_on_AnimatedSprite_animation_finished"]

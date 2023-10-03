@@ -1,0 +1,139 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://ui/snd_noise2.wav" type="AudioStream" id=1]
+[ext_resource path="res://ui/bg_weird2.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "level_transition"
+script/source = "extends Control
+
+var bg_texture1 := preload(\"res://ui/bg_weird1.png\")
+var bg_texture2 := preload(\"res://ui/bg_weird2.png\")
+var bg_texture3 := preload(\"res://ui/bg_weird3.png\")
+
+signal transition_finished
+
+
+func transite() -> void:
+	$Control.set_position(Vector2(0, (randi() % 100) * select_direction()))
+	
+	var bg_weird = select_random_texture()
+	for t in $Control.get_children():
+		t.set_texture(bg_weird)
+	
+	var tween = get_tree().create_tween()
+	randomize()
+	tween.set_trans(randi() % 10)
+	tween.set_ease(Tween.EASE_IN)
+	tween.tween_property($Control, \"rect_position:y\", (100 + randi() % 500) * select_direction(), 0.5)
+	if GameData.sound_enabled:
+		$NoiseSound.set_volume_db(0)
+	else:
+		$NoiseSound.set_volume_db(-80)
+	$NoiseSound.play()
+
+
+func select_direction() -> int:
+	var rand: int = randi() % 2
+	return 1 if rand == 0 else -1
+
+
+func select_random_texture():
+	randomize()
+	var texture
+	match randi() % 3:
+		0:
+			texture = bg_texture1
+		1:
+			texture = bg_texture2
+		2:
+			texture = bg_texture3
+	return texture
+
+
+func _on_NoiseSound_finished():
+	emit_signal(\"transition_finished\")
+"
+
+[node name="LevelTransition" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = SubResource( 1 )
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="Texture" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_bottom = -96.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="Texture2" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -366.0
+margin_bottom = -456.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="Texture3" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 366.0
+margin_bottom = 272.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="Texture4" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 752.0
+margin_bottom = 658.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="Texture5" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -752.0
+margin_bottom = -846.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="Texture6" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = -1136.0
+margin_bottom = -1230.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="Texture7" type="TextureRect" parent="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 1136.0
+margin_bottom = 1042.0
+rect_min_size = Vector2( 640, 283 )
+texture = ExtResource( 2 )
+expand = true
+stretch_mode = 7
+
+[node name="NoiseSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+
+[connection signal="finished" from="NoiseSound" to="." method="_on_NoiseSound_finished"]

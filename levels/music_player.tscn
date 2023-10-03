@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://levels/phunq.mp3" type="AudioStream" id=1]
+
+[sub_resource type="GDScript" id=1]
+resource_name = "music_player"
+script/source = "extends Node2D
+
+func play() -> void:
+	$Music.play()
+
+
+func stop() -> void:
+	$Music.stop()
+
+
+func is_playing() -> bool:
+	return $Music.is_playing()
+"
+
+[node name="MusicPlayer" type="Node2D"]
+script = SubResource( 1 )
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )
+volume_db = -2.0

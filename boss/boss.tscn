@@ -1,0 +1,64 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://boss/boss.gd" type="Script" id=1]
+[ext_resource path="res://boss/boss_2.png" type="Texture" id=2]
+[ext_resource path="res://boss/boss_1.png" type="Texture" id=3]
+[ext_resource path="res://props/giant_flower/image 2.png" type="Texture" id=4]
+[ext_resource path="res://props/giant_flower/image 3.png" type="Texture" id=5]
+[ext_resource path="res://props/giant_flower/image 1.png" type="Texture" id=6]
+[ext_resource path="res://props/giant_flower/image 0.png" type="Texture" id=7]
+[ext_resource path="res://props/snd_engine.wav" type="AudioStream" id=8]
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "angry",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 0.0
+} ]
+
+[sub_resource type="SpriteFrames" id=2]
+animations = [ {
+"frames": [ ExtResource( 7 ), ExtResource( 6 ), ExtResource( 4 ), ExtResource( 5 ) ],
+"loop": true,
+"name": "default",
+"speed": 25.0
+} ]
+
+[node name="Boss" type="KinematicBody2D"]
+z_index = 2
+collision_layer = 32
+collision_mask = 10
+script = ExtResource( 1 )
+
+[node name="PlayerDetector" type="Area2D" parent="."]
+monitoring = false
+monitorable = false
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="PlayerDetector"]
+polygon = PoolVector2Array( -85, -55, 85, -55, 85, 35, 25, 35, 25, 65, -25, 65, -25, 35, -85, 35 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 1 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PoolVector2Array( -85, -55, 85, -55, 85, 35, 25, 35, 25, 65, -25, 65, -25, 35, -85, 35 )
+
+[node name="Flame" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 2.5625, 113.397 )
+scale = Vector2( 0.542969, 0.605401 )
+z_index = 1
+frames = SubResource( 2 )
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 8 )
+
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+
+[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]

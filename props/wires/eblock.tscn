@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://props/wires/eblock_enabled.png" type="Texture" id=1]
+[ext_resource path="res://props/wires/eblock_disabled.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=3]
+resource_name = "eblock"
+script/source = "extends StaticBody2D
+## Электроблок
+
+func _ready() -> void:
+	pass
+
+
+func enable() -> void:
+	$AnimatedSprite.animation = \"enabled\"
+	$CollisionShape2D.set_deferred(\"disabled\", false)
+"
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ ExtResource( 2 ) ],
+"loop": false,
+"name": "default",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 1 ) ],
+"loop": false,
+"name": "enabled",
+"speed": 5.0
+} ]
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 16, 16 )
+
+[node name="EBlock" type="StaticBody2D" groups=["eblocks"]]
+collision_layer = 2
+script = SubResource( 3 )
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 4 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+disabled = true

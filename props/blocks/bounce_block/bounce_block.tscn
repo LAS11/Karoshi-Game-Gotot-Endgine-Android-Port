@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://props/pistol/bullet_bounce.wav" type="AudioStream" id=1]
+[ext_resource path="res://props/blocks/bounce_block/bounce_block.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=2]
+resource_name = "bounce_block"
+script/source = "extends StaticBody2D
+
+var bullet_instance: PackedScene = preload(\"res://props/pistol/bullet.tscn\")
+
+
+func bounce_bullet():
+	if GameData.sound_enabled:
+		$Bounce.play()
+"
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 16, 16 )
+
+[node name="BounceBlock" type="StaticBody2D" groups=["bounce_blocks"]]
+z_index = 4
+z_as_relative = false
+collision_layer = 2
+collision_mask = 13
+script = SubResource( 2 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 1 )
+
+[node name="Bounce" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 1 )

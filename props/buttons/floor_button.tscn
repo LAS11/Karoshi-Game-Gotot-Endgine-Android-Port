@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://props/buttons/button_0.png" type="Texture" id=1]
+[ext_resource path="res://props/buttons/bbutton_0.png" type="Texture" id=2]
+[ext_resource path="res://props/buttons/floor_button.gd" type="Script" id=3]
+[ext_resource path="res://props/buttons/bbutton_1.png" type="Texture" id=4]
+[ext_resource path="res://props/buttons/button_1.png" type="Texture" id=5]
+[ext_resource path="res://props/buttons/button_released.wav" type="AudioStream" id=6]
+[ext_resource path="res://props/buttons/button_pressed.wav" type="AudioStream" id=7]
+
+[sub_resource type="AnimatedTexture" id=2]
+resource_local_to_scene = true
+frames = 4
+pause = true
+fps = 0.0
+frame_0/texture = ExtResource( 1 )
+frame_1/texture = ExtResource( 5 )
+frame_1/delay_sec = 0.0
+frame_2/texture = ExtResource( 2 )
+frame_2/delay_sec = 0.0
+frame_3/texture = ExtResource( 4 )
+frame_3/delay_sec = 0.0
+
+[sub_resource type="RayShape2D" id=4]
+length = 13.0
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 3.0
+height = 8.0
+
+[node name="FloorButton" type="Area2D" groups=["floor_buttons"]]
+z_index = 2
+z_as_relative = false
+collision_layer = 16
+collision_mask = 5
+monitorable = false
+script = ExtResource( 3 )
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = SubResource( 2 )
+
+[node name="ButtonPressed" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="ButtonReleased" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 2 )
+rotation = 3.14159
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 9 )
+shape = SubResource( 3 )
+
+[connection signal="body_entered" from="." to="." method="_on_FloorButton_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_FloorButton_body_exited"]

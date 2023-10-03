@@ -1,23 +1,24 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/wings/image 1.png" type="Texture" id=2]
 [ext_resource path="res://player/wings/image 0.png" type="Texture" id=3]
 [ext_resource path="res://player/wings/image 2.png" type="Texture" id=4]
-[ext_resource path="res://player/player_walk_anim/image 0.png" type="Texture" id=5]
-[ext_resource path="res://player/player_shot_left.png" type="Texture" id=6]
-[ext_resource path="res://player/player_walk_anim/image 1.png" type="Texture" id=7]
-[ext_resource path="res://player/player_walk_anim/image 2.png" type="Texture" id=8]
-[ext_resource path="res://player/player_walk_anim/image 3.png" type="Texture" id=9]
-[ext_resource path="res://player/player_walk_anim/image 4.png" type="Texture" id=10]
-[ext_resource path="res://player/player_walk_anim/image 5.png" type="Texture" id=11]
-[ext_resource path="res://player/player_walk_anim/image 6.png" type="Texture" id=12]
-[ext_resource path="res://player/player_walk_anim/image 7.png" type="Texture" id=13]
-[ext_resource path="res://player/player_shot_right.png" type="Texture" id=14]
+[ext_resource path="res://player/walk_anim/image 0.png" type="Texture" id=5]
+[ext_resource path="res://player/player_shoot.png" type="Texture" id=6]
+[ext_resource path="res://player/walk_anim/image 1.png" type="Texture" id=7]
+[ext_resource path="res://player/walk_anim/image 2.png" type="Texture" id=8]
+[ext_resource path="res://player/walk_anim/image 3.png" type="Texture" id=9]
+[ext_resource path="res://player/walk_anim/image 4.png" type="Texture" id=10]
+[ext_resource path="res://player/walk_anim/image 5.png" type="Texture" id=11]
+[ext_resource path="res://player/walk_anim/image 6.png" type="Texture" id=12]
+[ext_resource path="res://player/walk_anim/image 7.png" type="Texture" id=13]
+[ext_resource path="res://player/no_weapon_message.tscn" type="PackedScene" id=14]
 [ext_resource path="res://player/image 1.png" type="Texture" id=15]
 [ext_resource path="res://player/image 2.png" type="Texture" id=16]
-[ext_resource path="res://player/message.png" type="Texture" id=17]
-[ext_resource path="res://player/ui/ui.tscn" type="PackedScene" id=18]
+[ext_resource path="res://player/player_shoot.wav" type="AudioStream" id=17]
+[ext_resource path="res://player/player_death.wav" type="AudioStream" id=18]
+[ext_resource path="res://player/ragdoll/ragdoll.tscn" type="PackedScene" id=19]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -32,7 +33,7 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="SpriteFrames" id=2]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
 "frames": [ ExtResource( 5 ) ],
 "loop": true,
@@ -42,74 +43,82 @@ animations = [ {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 5 ) ],
 "loop": true,
 "name": "shocked",
-"speed": 1.87
+"speed": 30.0
 }, {
 "frames": [ ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ), ExtResource( 6 ) ],
 "loop": true,
-"name": "shoot_left",
+"name": "shoot",
 "speed": 5.0
-}, {
-"frames": [ ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ), ExtResource( 14 ) ],
-"loop": true,
-"name": "shoot_right",
-"speed": 1.0
 }, {
 "frames": [ ExtResource( 5 ), ExtResource( 7 ), ExtResource( 8 ), ExtResource( 9 ), ExtResource( 10 ), ExtResource( 11 ), ExtResource( 12 ), ExtResource( 13 ) ],
 "loop": true,
 "name": "walk",
-"speed": 14.0
+"speed": 20.0
 } ]
 
 [sub_resource type="RectangleShape2D" id=3]
-extents = Vector2( 8.5, 15.5 )
+extents = Vector2( 8.5, 15.4 )
 
 [node name="Player" type="KinematicBody2D"]
-collision_layer = 4
-collision_mask = 9
-collision/safe_margin = 0.16
+z_index = 4
+collision_mask = 28
 script = ExtResource( 1 )
 
-[node name="Wings" type="AnimatedSprite" parent="."]
+[node name="PlayerRagdoll" parent="." instance=ExtResource( 19 )]
+visible = false
+position = Vector2( 0, 3 )
+z_index = 20
+
+[node name="WingsSprite" type="AnimatedSprite" parent="."]
 visible = false
 frames = SubResource( 1 )
 animation = "idle"
 playing = true
 
-[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-frames = SubResource( 2 )
+[node name="PlayerSprite" type="AnimatedSprite" parent="."]
+frames = SubResource( 5 )
 animation = "idle"
-playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.5, 0.5 )
+position = Vector2( -0.5, 0.4 )
 shape = SubResource( 3 )
 
-[node name="Message" type="Sprite" parent="."]
-modulate = Color( 1, 1, 1, 0 )
-position = Vector2( 60, -50 )
-texture = ExtResource( 17 )
+[node name="NoWeaponMessage" parent="." instance=ExtResource( 14 )]
+visible = false
+position = Vector2( 61, -48 )
+z_index = 10
 
-[node name="Timer" type="Timer" parent="Message"]
-wait_time = 2.0
-one_shot = true
+[node name="BulletCast" type="RayCast2D" parent="."]
+position = Vector2( 8, 0 )
+rotation = -1.57079
+enabled = true
+cast_to = Vector2( 0.00020078, 32 )
+collision_mask = 198
+__meta__ = {
+"_edit_group_": true
+}
 
-[node name="Tween" type="Tween" parent="Message"]
-
-[node name="Position2D" type="Position2D" parent="."]
-position = Vector2( 25, 0 )
+[node name="BulletSpawn" type="Position2D" parent="BulletCast"]
+position = Vector2( 0.000101089, 16 )
+rotation = 1.57079
 
 [node name="ShootTimer" type="Timer" parent="."]
 wait_time = 0.2
 one_shot = true
 
-[node name="UI" parent="." instance=ExtResource( 18 )]
+[node name="JumpSound" type="AudioStreamPlayer" parent="."]
+volume_db = 5.0
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
-visible = false
-rotation = -1.57079
-enabled = true
-cast_to = Vector2( 0, 25 )
-collision_mask = 9
+[node name="ShootSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 17 )
 
-[connection signal="timeout" from="Message/Timer" to="." method="_on_msg_Timer_timeout"]
+[node name="DeathSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 18 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[connection signal="animation_finished" from="PlayerSprite" to="." method="_on_PlayerSprite_animation_finished"]
 [connection signal="timeout" from="ShootTimer" to="." method="_on_shoot_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

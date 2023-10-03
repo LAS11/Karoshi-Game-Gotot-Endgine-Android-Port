@@ -1,0 +1,77 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://props/flower.png" type="Texture" id=1]
+[ext_resource path="res://props/giant_flower/image 0.png" type="Texture" id=2]
+[ext_resource path="res://props/giant_flower/image 3.png" type="Texture" id=3]
+[ext_resource path="res://props/giant_flower/image 1.png" type="Texture" id=4]
+[ext_resource path="res://props/giant_flower/image 2.png" type="Texture" id=5]
+[ext_resource path="res://props/snd_engine.wav" type="AudioStream" id=6]
+[ext_resource path="res://props/snd_explosion.wav" type="AudioStream" id=7]
+
+[sub_resource type="GDScript" id=2]
+resource_name = "giant_flower"
+script/source = "extends Node2D
+
+signal flew_away
+
+const FLY_SPEED := 500.0
+
+
+func _ready():
+	set_process(false)
+
+
+func _process(delta):
+	position.y -= FLY_SPEED * delta
+
+
+func fly() -> void:
+	$Flame.play(\"default\")
+	$Flame.visible = true
+	if GameData.sound_enabled:
+		$EngineSound.play()
+	set_process(true)
+
+
+func _on_VisibilityNotifier2D_screen_exited():
+	if position.y <= 230:
+		if $EngineSound.is_playing():
+			$EngineSound.stop()
+		if GameData.sound_enabled:
+			$ExplosionSound.play()
+		emit_signal(\"flew_away\")
+"
+
+[sub_resource type="SpriteFrames" id=1]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 4 ), ExtResource( 5 ), ExtResource( 3 ) ],
+"loop": true,
+"name": "default",
+"speed": 25.0
+} ]
+
+[node name="GiantFlower" type="Node2D"]
+script = SubResource( 2 )
+
+[node name="Flower" type="Sprite" parent="."]
+scale = Vector2( 10, 9.90625 )
+texture = ExtResource( 1 )
+
+[node name="Flame" type="AnimatedSprite" parent="."]
+visible = false
+position = Vector2( 8, 238 )
+scale = Vector2( 0.896875, 1 )
+z_index = 1
+frames = SubResource( 1 )
+
+[node name="EngineSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+
+[node name="ExplosionSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 7 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+position = Vector2( 4.99999, 40 )
+scale = Vector2( 9.6, 19.1 )
+
+[connection signal="screen_exited" from="VisibilityNotifier2D" to="." method="_on_VisibilityNotifier2D_screen_exited"]

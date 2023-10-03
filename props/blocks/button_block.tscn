@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://props/blocks/block.tscn" type="PackedScene" id=1]
+[ext_resource path="res://props/blocks/button_block.png" type="Texture" id=2]
+
+[sub_resource type="GDScript" id=3]
+resource_name = "block_a"
+script/source = "extends StaticBody2D
+# Блок, переключаемый нажатием кнопки
+
+const COLLISION_MASK_DEFAULT := 13
+const PLAYER_COLLISION_BIT := 0
+const CRATE_COLLISION_BIT := 2
+const BULLET_COLLISION_BIT := 3
+
+
+var test_shape := Physics2DShapeQueryParameters.new()
+var enabled := true
+
+
+func _ready():
+	test_shape.set_collision_layer(0)
+	test_shape.set_shape($CollisionShape2D.get_shape())
+	test_shape.set_transform(global_transform)
+
+
+func _physics_process(_delta) -> void:
+	var intersects: Array = get_world_2d().get_direct_space_state().intersect_shape(test_shape)
+	
+	if enabled:
+		if not intersects.empty():
+			modulate = Color(1, 1, 1, 0.5)
+			z_index = 5
+		else:
+			set_collision_mask(COLLISION_MASK_DEFAULT)
+			test_shape.set_collision_layer(0)
+			modulate = Color(1, 1, 1, 1)
+			z_index = 4
+
+
+func disable_block() -> void:
+	set_collision_mask(0)
+	test_shape.set_collision_layer(COLLISION_MASK_DEFAULT)
+	enabled = false
+	modulate = Color(1, 1, 1, 0)
+	
+
+
+func enable_block() -> void:
+	enabled = true
+"
+
+[node name="ButtonBlock" groups=["button_blocks"] instance=ExtResource( 1 )]
+collision_layer = 64
+collision_mask = 13
+script = SubResource( 3 )
+__meta__ = {
+"_edit_group_": true,
+"_editor_description_": "Блок, отключаемый нажатием кнопки"
+}
+
+[node name="Sprite" parent="." index="0"]
+texture = ExtResource( 2 )
+
+[node name="Shadow" parent="Sprite" index="0"]
+z_as_relative = false

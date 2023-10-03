@@ -1,0 +1,530 @@
+[gd_scene load_steps=39 format=2]
+
+[ext_resource path="res://ui/main_menu/main_menu.gd" type="Script" id=1]
+[ext_resource path="res://ui/main_menu/bg_menu.png" type="Texture" id=2]
+[ext_resource path="res://ui/main_menu/level_button.tscn" type="PackedScene" id=3]
+[ext_resource path="res://ui/main_menu/level_icons/image 1.png" type="Texture" id=4]
+[ext_resource path="res://ui/main_menu/level_icons/image 2.png" type="Texture" id=5]
+[ext_resource path="res://ui/main_menu/level_icons/image 6.png" type="Texture" id=6]
+[ext_resource path="res://ui/main_menu/level_icons/image 4.png" type="Texture" id=7]
+[ext_resource path="res://ui/main_menu/level_icons/image 3.png" type="Texture" id=8]
+[ext_resource path="res://ui/main_menu/level_icons/image 5.png" type="Texture" id=9]
+[ext_resource path="res://ui/main_menu/level_icons/image 7.png" type="Texture" id=10]
+[ext_resource path="res://ui/main_menu/level_icons/image 8.png" type="Texture" id=11]
+[ext_resource path="res://ui/main_menu/level_icons/image 9.png" type="Texture" id=12]
+[ext_resource path="res://ui/main_menu/level_icons/image 10.png" type="Texture" id=13]
+[ext_resource path="res://ui/main_menu/level_icons/image 13.png" type="Texture" id=14]
+[ext_resource path="res://ui/main_menu/level_icons/image 21.png" type="Texture" id=15]
+[ext_resource path="res://ui/main_menu/level_icons/image 24.png" type="Texture" id=16]
+[ext_resource path="res://ui/main_menu/level_icons/image 15.png" type="Texture" id=17]
+[ext_resource path="res://ui/main_menu/level_icons/image 19.png" type="Texture" id=18]
+[ext_resource path="res://ui/main_menu/level_icons/image 20.png" type="Texture" id=19]
+[ext_resource path="res://ui/main_menu/level_icons/image 12.png" type="Texture" id=20]
+[ext_resource path="res://ui/main_menu/level_icons/image 18.png" type="Texture" id=21]
+[ext_resource path="res://ui/main_menu/level_icons/image 25.png" type="Texture" id=22]
+[ext_resource path="res://ui/main_menu/level_icons/image 17.png" type="Texture" id=23]
+[ext_resource path="res://ui/main_menu/level_icons/image 26.png" type="Texture" id=24]
+[ext_resource path="res://ui/main_menu/level_icons/image 14.png" type="Texture" id=25]
+[ext_resource path="res://ui/main_menu/level_icons/image 16.png" type="Texture" id=26]
+[ext_resource path="res://ui/main_menu/level_icons/image 23.png" type="Texture" id=27]
+[ext_resource path="res://ui/main_menu/level_icons/image 11.png" type="Texture" id=28]
+[ext_resource path="res://ui/main_menu/level_icons/image 22.png" type="Texture" id=29]
+[ext_resource path="res://ui/main_menu/level_icons/image 0.png" type="Texture" id=30]
+[ext_resource path="res://ui/music_off.png" type="Texture" id=31]
+[ext_resource path="res://ui/sound_on.png" type="Texture" id=32]
+[ext_resource path="res://ui/music_on.png" type="Texture" id=33]
+[ext_resource path="res://ui/sound_off.png" type="Texture" id=34]
+[ext_resource path="res://ui/vibro_off.png" type="Texture" id=35]
+[ext_resource path="res://ui/vibro_on.png" type="Texture" id=36]
+
+[sub_resource type="Animation" id=1]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "fade_red"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 0, 0, 0 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[node name="MainMenu" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+
+[node name="Background" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -240.0
+margin_right = 320.0
+margin_bottom = 240.0
+texture = ExtResource( 2 )
+
+[node name="GridContainer" type="GridContainer" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -188.0
+margin_top = -208.0
+margin_right = 188.0
+margin_bottom = 208.0
+grow_horizontal = 2
+grow_vertical = 2
+custom_constants/vseparation = 11
+custom_constants/hseparation = 54
+columns = 5
+
+[node name="MarginContainer" type="MarginContainer" parent="GridContainer"]
+margin_right = 72.0
+margin_bottom = 56.0
+
+[node name="MarginContainer2" type="MarginContainer" parent="GridContainer"]
+margin_left = 126.0
+margin_right = 198.0
+margin_bottom = 56.0
+
+[node name="Level0" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_right = 324.0
+margin_bottom = 56.0
+button_text = "0"
+button_icon = ExtResource( 30 )
+
+[node name="MarginContainer3" type="MarginContainer" parent="GridContainer"]
+margin_left = 378.0
+margin_right = 450.0
+margin_bottom = 56.0
+
+[node name="MarginContainer4" type="MarginContainer" parent="GridContainer"]
+margin_left = 504.0
+margin_right = 576.0
+margin_bottom = 56.0
+
+[node name="Level1" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 67.0
+margin_right = 72.0
+margin_bottom = 123.0
+button_text = "1"
+button_icon = ExtResource( 4 )
+
+[node name="Level2" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 126.0
+margin_top = 67.0
+margin_right = 198.0
+margin_bottom = 123.0
+button_text = "2"
+button_icon = ExtResource( 5 )
+
+[node name="Level3" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_top = 67.0
+margin_right = 324.0
+margin_bottom = 123.0
+button_text = "3"
+button_icon = ExtResource( 8 )
+
+[node name="Level4" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 378.0
+margin_top = 67.0
+margin_right = 450.0
+margin_bottom = 123.0
+button_text = "4"
+button_icon = ExtResource( 7 )
+
+[node name="Level5" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 504.0
+margin_top = 67.0
+margin_right = 576.0
+margin_bottom = 123.0
+button_text = "5"
+button_icon = ExtResource( 9 )
+
+[node name="Level6" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 134.0
+margin_right = 72.0
+margin_bottom = 190.0
+button_text = "6"
+button_icon = ExtResource( 6 )
+
+[node name="Level7" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 126.0
+margin_top = 134.0
+margin_right = 198.0
+margin_bottom = 190.0
+button_text = "7"
+button_icon = ExtResource( 10 )
+
+[node name="Level8" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_top = 134.0
+margin_right = 324.0
+margin_bottom = 190.0
+button_text = "8"
+button_icon = ExtResource( 11 )
+
+[node name="Level9" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 378.0
+margin_top = 134.0
+margin_right = 450.0
+margin_bottom = 190.0
+button_text = "9"
+button_icon = ExtResource( 12 )
+
+[node name="Level10" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 504.0
+margin_top = 134.0
+margin_right = 576.0
+margin_bottom = 190.0
+button_text = "10"
+button_icon = ExtResource( 13 )
+
+[node name="Level11" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 201.0
+margin_right = 72.0
+margin_bottom = 257.0
+button_text = "11"
+button_icon = ExtResource( 28 )
+
+[node name="Level12" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 126.0
+margin_top = 201.0
+margin_right = 198.0
+margin_bottom = 257.0
+button_text = "12"
+button_icon = ExtResource( 20 )
+
+[node name="Level13" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_top = 201.0
+margin_right = 324.0
+margin_bottom = 257.0
+button_text = "13"
+button_icon = ExtResource( 14 )
+
+[node name="Level14" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 378.0
+margin_top = 201.0
+margin_right = 450.0
+margin_bottom = 257.0
+button_text = "14"
+button_icon = ExtResource( 25 )
+
+[node name="Level15" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 504.0
+margin_top = 201.0
+margin_right = 576.0
+margin_bottom = 257.0
+button_text = "15"
+button_icon = ExtResource( 17 )
+
+[node name="Level16" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 268.0
+margin_right = 72.0
+margin_bottom = 324.0
+button_text = "16"
+button_icon = ExtResource( 26 )
+
+[node name="Level17" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 126.0
+margin_top = 268.0
+margin_right = 198.0
+margin_bottom = 324.0
+button_text = "17"
+button_icon = ExtResource( 23 )
+
+[node name="Level18" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_top = 268.0
+margin_right = 324.0
+margin_bottom = 324.0
+button_text = "18"
+button_icon = ExtResource( 21 )
+
+[node name="Level19" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 378.0
+margin_top = 268.0
+margin_right = 450.0
+margin_bottom = 324.0
+button_text = "19"
+button_icon = ExtResource( 18 )
+
+[node name="Level20" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 504.0
+margin_top = 268.0
+margin_right = 576.0
+margin_bottom = 324.0
+button_text = "20"
+button_icon = ExtResource( 19 )
+
+[node name="Level21" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_top = 335.0
+margin_right = 72.0
+margin_bottom = 391.0
+button_text = "21"
+button_icon = ExtResource( 15 )
+
+[node name="Level22" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 126.0
+margin_top = 335.0
+margin_right = 198.0
+margin_bottom = 391.0
+button_text = "22"
+button_icon = ExtResource( 29 )
+
+[node name="Level23" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_top = 335.0
+margin_right = 324.0
+margin_bottom = 391.0
+button_text = "23"
+button_icon = ExtResource( 27 )
+
+[node name="Level24" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 378.0
+margin_top = 335.0
+margin_right = 450.0
+margin_bottom = 391.0
+button_text = "24"
+button_icon = ExtResource( 16 )
+
+[node name="Level25" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 504.0
+margin_top = 335.0
+margin_right = 576.0
+margin_bottom = 391.0
+button_text = "25"
+button_icon = ExtResource( 22 )
+
+[node name="MarginContainer5" type="MarginContainer" parent="GridContainer"]
+margin_top = 402.0
+margin_right = 72.0
+margin_bottom = 458.0
+
+[node name="MarginContainer6" type="MarginContainer" parent="GridContainer"]
+margin_left = 126.0
+margin_top = 402.0
+margin_right = 198.0
+margin_bottom = 458.0
+
+[node name="Level26" parent="GridContainer" instance=ExtResource( 3 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 252.0
+margin_top = 402.0
+margin_right = 324.0
+margin_bottom = 458.0
+button_text = "Boss"
+button_icon = ExtResource( 24 )
+
+[node name="MarginContainer7" type="MarginContainer" parent="GridContainer"]
+margin_left = 378.0
+margin_top = 402.0
+margin_right = 450.0
+margin_bottom = 458.0
+
+[node name="MarginContainer8" type="MarginContainer" parent="GridContainer"]
+margin_left = 504.0
+margin_top = 402.0
+margin_right = 576.0
+margin_bottom = 458.0
+
+[node name="Control" type="Control" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = 32.0
+margin_top = -67.0
+margin_bottom = -11.0
+mouse_filter = 2
+custom_constants/separation = 0
+
+[node name="Music" type="CheckBox" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color( 0.945098, 0.945098, 0.945098, 1 )
+margin_right = 56.0
+margin_bottom = 56.0
+focus_mode = 0
+size_flags_horizontal = 12
+size_flags_vertical = 12
+custom_icons/checked = ExtResource( 33 )
+custom_icons/unchecked = ExtResource( 31 )
+pressed = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/VBoxContainer"]
+margin_left = 56.0
+margin_right = 73.0
+margin_bottom = 56.0
+mouse_filter = 2
+custom_constants/margin_right = 17
+
+[node name="Sound" type="CheckBox" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color( 0.945098, 0.945098, 0.945098, 1 )
+margin_left = 73.0
+margin_right = 129.0
+margin_bottom = 56.0
+focus_mode = 0
+custom_icons/checked = ExtResource( 32 )
+custom_icons/unchecked = ExtResource( 34 )
+pressed = true
+expand_icon = true
+
+[node name="MarginContainer3" type="MarginContainer" parent="Control/VBoxContainer"]
+margin_left = 129.0
+margin_right = 146.0
+margin_bottom = 56.0
+mouse_filter = 2
+custom_constants/margin_right = 17
+
+[node name="Vibration" type="CheckBox" parent="Control/VBoxContainer"]
+unique_name_in_owner = true
+self_modulate = Color( 0.945098, 0.945098, 0.945098, 1 )
+margin_left = 146.0
+margin_right = 202.0
+margin_bottom = 56.0
+focus_mode = 0
+custom_icons/checked = ExtResource( 36 )
+custom_icons/unchecked = ExtResource( 35 )
+pressed = true
+expand_icon = true
+
+[node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer"]
+margin_left = 202.0
+margin_right = 476.0
+margin_bottom = 56.0
+mouse_filter = 2
+custom_constants/margin_right = 274
+
+[node name="About" type="Button" parent="Control/VBoxContainer"]
+margin_left = 511.0
+margin_right = 573.0
+margin_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+focus_mode = 0
+size_flags_horizontal = 6
+shortcut_in_tooltip = false
+text = "About..."
+flat = true
+
+[node name="RedRect" type="ColorRect" parent="."]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+color = Color( 0.74902, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="RedRect"]
+anims/RESET = SubResource( 1 )
+anims/fade_red = SubResource( 2 )
+
+[connection signal="toggled" from="Control/VBoxContainer/Music" to="." method="_on_Music_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/Sound" to="." method="_on_Sound_toggled"]
+[connection signal="toggled" from="Control/VBoxContainer/Vibration" to="." method="_on_Vibration_toggled"]
+[connection signal="pressed" from="Control/VBoxContainer/About" to="." method="_on_About_pressed"]

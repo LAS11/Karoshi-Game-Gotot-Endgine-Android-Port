@@ -1,0 +1,259 @@
+[gd_scene load_steps=25 format=2]
+
+[ext_resource path="res://ui/main_menu/main_menu.tscn" type="PackedScene" id=1]
+[ext_resource path="res://ui/global_background.jpg" type="Texture" id=2]
+[ext_resource path="res://ui/gamepad_buttons/b_pressed.tres" type="Texture" id=3]
+[ext_resource path="res://ui/gamepad_buttons/b_released.tres" type="Texture" id=4]
+[ext_resource path="res://ui/gamepad_buttons/left_arrow_pressed.tres" type="Texture" id=5]
+[ext_resource path="res://ui/gamepad_buttons/right_arrow_released.tres" type="Texture" id=6]
+[ext_resource path="res://ui/gamepad_buttons/menu_button_released.tres" type="Texture" id=7]
+[ext_resource path="res://ui/gamepad_buttons/r_released.tres" type="Texture" id=8]
+[ext_resource path="res://main_scene.gd" type="Script" id=9]
+[ext_resource path="res://ui/snd_restart.wav" type="AudioStream" id=10]
+[ext_resource path="res://ui/gamepad_buttons/menu_button_pressed.tres" type="Texture" id=11]
+[ext_resource path="res://ui/gamepad_buttons/left_arrow_released.tres" type="Texture" id=12]
+[ext_resource path="res://ui/gamepad_buttons/right_arrow_pressed.tres" type="Texture" id=13]
+[ext_resource path="res://ui/gamepad_buttons/a_pressed.tres" type="Texture" id=14]
+[ext_resource path="res://ui/gamepad_buttons/a_released.tres" type="Texture" id=15]
+[ext_resource path="res://ui/gamepad_buttons/r_pressed.tres" type="Texture" id=16]
+[ext_resource path="res://ui/popup_about.tscn" type="PackedScene" id=17]
+
+[sub_resource type="RectangleShape2D" id=21]
+extents = Vector2( 5.3, 10 )
+
+[sub_resource type="RectangleShape2D" id=22]
+extents = Vector2( 6, 10 )
+
+[sub_resource type="RectangleShape2D" id=16]
+
+[sub_resource type="CircleShape2D" id=23]
+radius = 8.0
+
+[sub_resource type="CircleShape2D" id=24]
+radius = 7.0
+
+[sub_resource type="Animation" id=25]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=26]
+resource_name = "blink_screen_red"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
+
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+mouse_filter = 2
+script = ExtResource( 9 )
+
+[node name="GlobalBackground" type="TextureRect" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -640.0
+margin_top = -400.0
+margin_right = 640.0
+margin_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 1280, 720 )
+rect_pivot_offset = Vector2( 640, 360 )
+texture = ExtResource( 2 )
+expand = true
+
+[node name="Control" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -240.0
+margin_right = 320.0
+margin_bottom = 240.0
+rect_min_size = Vector2( 640, 480 )
+mouse_filter = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -324.0
+margin_top = -240.0
+margin_right = 324.0
+margin_bottom = 240.0
+mouse_filter = 2
+
+[node name="LeftButtons" type="Control" parent="Control/HBoxContainer"]
+margin_bottom = 480.0
+mouse_filter = 2
+
+[node name="MoveLeft" type="TouchScreenButton" parent="Control/HBoxContainer/LeftButtons" groups=["gamepad_buttons"]]
+unique_name_in_owner = true
+position = Vector2( -163, 360 )
+scale = Vector2( 7.6, 7.6 )
+normal = ExtResource( 12 )
+pressed = ExtResource( 5 )
+shape = SubResource( 21 )
+passby_press = true
+action = "move_left"
+
+[node name="MoveRight" type="TouchScreenButton" parent="Control/HBoxContainer/LeftButtons" groups=["gamepad_buttons"]]
+unique_name_in_owner = true
+position = Vector2( -76, 360 )
+scale = Vector2( 7.6, 7.6 )
+normal = ExtResource( 6 )
+pressed = ExtResource( 13 )
+shape = SubResource( 22 )
+passby_press = true
+action = "move_right"
+
+[node name="Menu" type="TouchScreenButton" parent="Control/HBoxContainer/LeftButtons" groups=["gamepad_buttons"]]
+unique_name_in_owner = true
+position = Vector2( -82.4994, 16 )
+scale = Vector2( 3.3446, 2.88031 )
+normal = ExtResource( 7 )
+pressed = ExtResource( 11 )
+shape = SubResource( 16 )
+shape_visible = false
+action = "menu"
+
+[node name="ViewportContainer" type="ViewportContainer" parent="Control/HBoxContainer"]
+unique_name_in_owner = true
+margin_left = 4.0
+margin_right = 644.0
+margin_bottom = 480.0
+grow_horizontal = 2
+grow_vertical = 2
+rect_min_size = Vector2( 640, 480 )
+rect_pivot_offset = Vector2( 320, 240 )
+mouse_filter = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="Viewport" type="Viewport" parent="Control/HBoxContainer/ViewportContainer"]
+unique_name_in_owner = true
+size = Vector2( 640, 480 )
+size_override_stretch = true
+handle_input_locally = false
+usage = 1
+render_target_update_mode = 3
+
+[node name="MainMenu" parent="Control/HBoxContainer/ViewportContainer/Viewport" instance=ExtResource( 1 )]
+unique_name_in_owner = true
+rect_min_size = Vector2( 640, 480 )
+
+[node name="RightButtons" type="Control" parent="Control/HBoxContainer"]
+margin_left = 648.0
+margin_right = 648.0
+margin_bottom = 480.0
+mouse_filter = 2
+
+[node name="Jump" type="TouchScreenButton" parent="Control/HBoxContainer/RightButtons" groups=["gamepad_buttons"]]
+unique_name_in_owner = true
+position = Vector2( 55, 364 )
+scale = Vector2( 8, 8 )
+normal = ExtResource( 4 )
+pressed = ExtResource( 3 )
+shape = SubResource( 23 )
+passby_press = true
+action = "jump"
+
+[node name="Shoot" type="TouchScreenButton" parent="Control/HBoxContainer/RightButtons" groups=["gamepad_buttons"]]
+unique_name_in_owner = true
+position = Vector2( 12, 288 )
+scale = Vector2( 6, 6 )
+normal = ExtResource( 15 )
+pressed = ExtResource( 14 )
+shape = SubResource( 24 )
+passby_press = true
+action = "shoot"
+
+[node name="Restart" type="TouchScreenButton" parent="Control/HBoxContainer/RightButtons" groups=["gamepad_buttons"]]
+unique_name_in_owner = true
+position = Vector2( 20, 16 )
+scale = Vector2( 5.30831, 4.57143 )
+normal = ExtResource( 8 )
+pressed = ExtResource( 16 )
+shape = SubResource( 16 )
+shape_visible = false
+passby_press = true
+action = "restart"
+
+[node name="AboutControl" type="Control" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -320.0
+margin_top = -240.0
+margin_right = 320.0
+margin_bottom = 240.0
+
+[node name="BackgroundAbout" type="ColorRect" parent="AboutControl"]
+unique_name_in_owner = true
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -320.0
+margin_top = -160.0
+margin_right = 320.0
+margin_bottom = 80.0
+color = Color( 0, 0, 0, 0.4 )
+
+[node name="PopupAbout" parent="AboutControl" instance=ExtResource( 17 )]
+unique_name_in_owner = true
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -156.0
+margin_top = -153.5
+margin_right = 156.0
+margin_bottom = 153.5
+
+[node name="Overlay" type="CanvasLayer" parent="."]
+
+[node name="RedRect" type="ColorRect" parent="Overlay"]
+self_modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.75, 0, 0, 1 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Overlay/RedRect"]
+reset_on_save = false
+anims/RESET = SubResource( 25 )
+anims/blink_screen_red = SubResource( 26 )
+
+[node name="RestartSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 10 )
+
+[connection signal="popup_hide" from="AboutControl/PopupAbout" to="." method="_on_PopupAbout_popup_hide"]
+[connection signal="animation_finished" from="Overlay/RedRect/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

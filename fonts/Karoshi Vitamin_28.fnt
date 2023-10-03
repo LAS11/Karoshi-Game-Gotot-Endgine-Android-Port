@@ -1,0 +1,21 @@
+info face="Karoshi_Vitamin_28" size=28 bold=0 italic=0 charset="" unicode=1 stretchH=100 smooth=1 aa=1 padding=1,1,1,1 spacing=1,1
+common lineHeight=28 base=22 scaleW=95 scaleH=100 pages=1 packed=0
+page id=0 file="Karoshi Vitamin_28.png"
+chars count=17
+char id=32 x=0 y=0 width=0 height=0 xoffset=0 yoffset=0 xadvance=14 page=0 chnl=15
+char id=48 x=54 y=79 width=23 height=19 xoffset=0 yoffset=8 xadvance=21 page=0 chnl=15
+char id=49 x=78 y=79 width=17 height=18 xoffset=-1 yoffset=8 xadvance=14 page=0 chnl=15
+char id=50 x=65 y=29 width=23 height=23 xoffset=-1 yoffset=4 xadvance=19 page=0 chnl=15
+char id=51 x=68 y=0 width=20 height=25 xoffset=-1 yoffset=3 xadvance=17 page=0 chnl=15
+char id=52 x=44 y=0 width=23 height=26 xoffset=-2 yoffset=2 xadvance=19 page=0 chnl=15
+char id=53 x=0 y=55 width=22 height=23 xoffset=-2 yoffset=2 xadvance=18 page=0 chnl=15
+char id=54 x=20 y=29 width=21 height=24 xoffset=-1 yoffset=2 xadvance=18 page=0 chnl=15
+char id=55 x=0 y=29 width=19 height=25 xoffset=-1 yoffset=4 xadvance=15 page=0 chnl=15
+char id=56 x=42 y=29 width=22 height=24 xoffset=-1 yoffset=4 xadvance=19 page=0 chnl=15
+char id=57 x=23 y=55 width=20 height=22 xoffset=0 yoffset=5 xadvance=18 page=0 chnl=15
+char id=66 x=22 y=0 width=21 height=28 xoffset=-1 yoffset=1 xadvance=17 page=0 chnl=15
+char id=79 x=27 y=79 width=26 height=21 xoffset=-2 yoffset=2 xadvance=22 page=0 chnl=15
+char id=83 x=69 y=55 width=24 height=22 xoffset=-1 yoffset=0 xadvance=21 page=0 chnl=15
+char id=98 x=0 y=0 width=21 height=28 xoffset=-1 yoffset=1 xadvance=17 page=0 chnl=15
+char id=111 x=0 y=79 width=26 height=21 xoffset=-2 yoffset=2 xadvance=22 page=0 chnl=15
+char id=115 x=44 y=55 width=24 height=22 xoffset=-1 yoffset=0 xadvance=21 page=0 chnl=15
