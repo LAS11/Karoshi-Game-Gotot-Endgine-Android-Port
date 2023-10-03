@@ -3,7 +3,7 @@
 [ENG] A fan-port a game "Karoshi" to Godot Engine. It was developed in order to port it to Android platform.
 All the original levels and all gameplay elements were recreated. The port was developed with Godot 3.0.6 in 2019 and rewrote in 2023 from scratch with Godot 3.5.3-stable.
 
-[RUS] Фанатский порт игры Karoshi на движок Godot Engine. Была разработана с целью переноса игры на платформу Android, а также для освоения игрового движка Godot.
+[RUS] Фанатский порт игры Karoshi на движок Godot Engine. Был разработан с целью переноса игры на платформу Android, а также для освоения игрового движка Godot.
 Были перенесены все уровни и все геймплейные элементы из оригинала. Порт был разработан в 2019 году, на Godot 3.0.6, в 2023 переписан с нуля под версию Godot 3.5.3-stable.
 
 ![изображение](https://github.com/LeshaLukash/Karoshi-Game-Godot-Engine-Android-Port/assets/5257092/b8b56763-1304-41de-af3d-8403ba2c22f0)
