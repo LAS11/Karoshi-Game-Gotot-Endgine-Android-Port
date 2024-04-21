@@ -16,4 +16,4 @@ All the original levels and all gameplay elements were recreated. The port was d
 The original game was made by (c) Jesse Venbrux, at http://karoshigame.venbrux.com/.
 Font VITAMIN by (c) Jakob Fischer at www.pizzadude.dk,  all rights reserved.
 
-This port was made in 2019-2023 by Alexey Lukashevich
+This port was made in 2019-2023 by Lesha Lukash
