@@ -123,6 +123,10 @@ pressed = ExtResource( 5 )
 shape = SubResource( 21 )
 passby_press = true
 action = "move_left"
+<<<<<<< Updated upstream
+=======
+visibility_mode = 1
+>>>>>>> Stashed changes
 
 [node name="MoveRight" type="TouchScreenButton" parent="Control/HBoxContainer/LeftButtons" groups=["gamepad_buttons"]]
 unique_name_in_owner = true
@@ -133,6 +137,10 @@ pressed = ExtResource( 13 )
 shape = SubResource( 22 )
 passby_press = true
 action = "move_right"
+<<<<<<< Updated upstream
+=======
+visibility_mode = 1
+>>>>>>> Stashed changes
 
 [node name="Menu" type="TouchScreenButton" parent="Control/HBoxContainer/LeftButtons" groups=["gamepad_buttons"]]
 unique_name_in_owner = true
@@ -143,6 +151,10 @@ pressed = ExtResource( 11 )
 shape = SubResource( 16 )
 shape_visible = false
 action = "menu"
+<<<<<<< Updated upstream
+=======
+visibility_mode = 1
+>>>>>>> Stashed changes
 
 [node name="ViewportContainer" type="ViewportContainer" parent="Control/HBoxContainer"]
 unique_name_in_owner = true
@@ -184,6 +196,10 @@ pressed = ExtResource( 3 )
 shape = SubResource( 23 )
 passby_press = true
 action = "jump"
+<<<<<<< Updated upstream
+=======
+visibility_mode = 1
+>>>>>>> Stashed changes
 
 [node name="Shoot" type="TouchScreenButton" parent="Control/HBoxContainer/RightButtons" groups=["gamepad_buttons"]]
 unique_name_in_owner = true
@@ -194,6 +210,10 @@ pressed = ExtResource( 14 )
 shape = SubResource( 24 )
 passby_press = true
 action = "shoot"
+<<<<<<< Updated upstream
+=======
+visibility_mode = 1
+>>>>>>> Stashed changes
 
 [node name="Restart" type="TouchScreenButton" parent="Control/HBoxContainer/RightButtons" groups=["gamepad_buttons"]]
 unique_name_in_owner = true
@@ -205,6 +225,10 @@ shape = SubResource( 16 )
 shape_visible = false
 passby_press = true
 action = "restart"
+<<<<<<< Updated upstream
+=======
+visibility_mode = 1
+>>>>>>> Stashed changes
 
 [node name="AboutControl" type="Control" parent="."]
 anchor_left = 0.5
@@ -229,7 +253,10 @@ color = Color( 0, 0, 0, 0.4 )
 
 [node name="PopupAbout" parent="AboutControl" instance=ExtResource( 17 )]
 unique_name_in_owner = true
+<<<<<<< Updated upstream
 visible = false
+=======
+>>>>>>> Stashed changes
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
