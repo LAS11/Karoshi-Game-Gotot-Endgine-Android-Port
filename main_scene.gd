@@ -23,9 +23,6 @@ var current_level_number := -1
 
 func _ready():
 	randomize()
-<<<<<<< Updated upstream
-
-=======
 	
 	# Если игра запущена в браузере или на ПК - скываем кнопки управления
 	if OS.get_name() == "Windows" or OS.get_name() == "HTML5":
@@ -36,7 +33,6 @@ func _ready():
 		get_node("%Shoot").hide()
 		get_node("%Restart").hide()
 		
->>>>>>> Stashed changes
 	# Временное (?) решение вопроса с размерами кнопок
 	# для экранов с разрешением 1920х1080
 	if is_equal_approx(screen_aspect_ratio, PROBLEM_ASPECT_RATIO) \

@@ -4,10 +4,6 @@
 [ext_resource path="res://ui/logo.png" type="Texture" id=2]
 
 [node name="PopupAbout" type="AcceptDialog"]
-<<<<<<< Updated upstream
-visible = true
-=======
->>>>>>> Stashed changes
 anchor_right = 0.507813
 anchor_bottom = 0.639583
 rect_min_size = Vector2( 325, 307 )
@@ -37,11 +33,7 @@ margin_bottom = -4.0
 
 [node name="HContainer" type="VBoxContainer" parent="TabContainer/Developers"]
 margin_right = 287.0
-<<<<<<< Updated upstream
-margin_bottom = 363.0
-=======
 margin_bottom = 295.0
->>>>>>> Stashed changes
 
 [node name="Logos" type="HBoxContainer" parent="TabContainer/Developers/HContainer"]
 margin_right = 287.0
@@ -70,39 +62,21 @@ stretch_mode = 6
 [node name="Label" type="Label" parent="TabContainer/Developers/HContainer"]
 margin_top = 60.0
 margin_right = 287.0
-<<<<<<< Updated upstream
-margin_bottom = 363.0
-=======
 margin_bottom = 295.0
->>>>>>> Stashed changes
 text = "The \"Karoshi\" game was made by
 Jesse Venbrux
 Music by Madcow
 -------------------------------------------------------
-<<<<<<< Updated upstream
-Android-port was made by 
-Alexey Lukashevich
-=======
 A port to Godot Engine was made by 
 Lesha Lukash
->>>>>>> Stashed changes
 Made with Godot Engine v3.5.3.stable.official
 -------------------------------------------------------
 Gamepad Prompts by Retrocade Media
 Onscreen Controls by Kenney
 -------------------------------------------------------
 Beta-testers:
-<<<<<<< Updated upstream
-DB
-nilsson
-Lindenov
-IgnatReborn
-Tumulus
-SunnyParypus"
-=======
 DB, nilsson, Lindenov,
 IgnatReborn, Tumulus, SunnyParypus"
->>>>>>> Stashed changes
 
 [node name="Licenses" type="ScrollContainer" parent="TabContainer"]
 visible = false
