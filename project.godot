@@ -68,8 +68,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Karoshi (Android Port)"
-config/description="Karoshi 1 Android Port"
+config/name="Karoshi 1 (Godot Port)"
 run/main_scene="res://main_scene.tscn"
 boot_splash/image="res://ui/bg_intro2_fullhd.png"
 boot_splash/fullsize=false
