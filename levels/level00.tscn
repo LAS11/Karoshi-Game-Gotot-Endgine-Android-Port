@@ -326,7 +326,12 @@ resource_name = "controls_instructions"
 script/source = "extends Sprite
 
 var is_visible := true
-onready var show_instructions := OS.get_name() == \"Windows\" or OS.get_name() == \"HTML5\"
+onready var show_instructions := OS.get_name() == \"Windows\" or (OS.get_name() == \"HTML5\" and not is_smartphone_web())
+
+
+# Проверка, не запущена ли игра на смартфоне в браузере
+func is_smartphone_web() -> bool:
+	return JavaScript.eval(\"/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)\", true)
 
 
 func _ready():
@@ -363,6 +368,7 @@ tile_data = PoolIntArray( 458761, 9, 0, 458762, 9, 0, 458763, 9, 0, 458764, 9, 0
 position = Vector2( 32, 368 )
 
 [node name="ControlsInstructions" type="Sprite" parent="."]
+visible = false
 position = Vector2( 92, 72 )
 texture = ExtResource( 23 )
 script = SubResource( 2 )

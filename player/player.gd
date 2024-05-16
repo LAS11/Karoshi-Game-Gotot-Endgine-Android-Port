@@ -123,8 +123,6 @@ func _check_collision() -> void:
 		
 		if collider is Bullet:
 			kill()
-	
-
 
 
 # Стрельба
@@ -145,7 +143,6 @@ func _shoot() -> void:
 		b.get_node("Sprite").flip_h = true
 	
 	get_parent().add_child(b) 
-	
 
 
 # Прыжок
@@ -157,7 +154,6 @@ func _jump() -> void:
 			$JumpSound.play()
 	elif has_wings:
 		_velocity.y = -WINGS_JUMP_HEIGHT
-
 
 
 # Проигрывание анимаций движения

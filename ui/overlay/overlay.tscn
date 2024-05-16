@@ -23,7 +23,6 @@ func blink_red() -> void:
 	if $RedScreen/AnimationPlayer.is_playing():
 		$RedScreen/AnimationPlayer.stop(true)
 	$RedScreen/AnimationPlayer.play(\"fade_transparency\")
-	
 
 
 func set_kills_number(n: String) -> void:
@@ -35,7 +34,7 @@ func fade_red() -> void:
 
 
 func vibrate_game() -> void:
-	if OS.get_name() == \"Android\" and GameData.vibro_enabled:
+	if (OS.get_name() == \"Android\" or OS.get_name() == \"HTML5\") and GameData.vibro_enabled:
 		Input.vibrate_handheld(300)
 
 

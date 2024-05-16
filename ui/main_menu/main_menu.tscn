@@ -491,7 +491,6 @@ focus_mode = 0
 custom_icons/checked = ExtResource( 36 )
 custom_icons/unchecked = ExtResource( 35 )
 pressed = true
-button_mask = 0
 expand_icon = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer"]

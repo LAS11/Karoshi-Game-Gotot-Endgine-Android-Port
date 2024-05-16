@@ -20,24 +20,22 @@ var buttons_handler := GamepadButtonsHandler.new()
 var can_restart := false
 var current_level_number := -1
 
-
 func _ready():
 	randomize()
 	
 	# Если игра запущена в браузере или на ПК - скываем кнопки управления
-	if OS.get_name() == "Windows" or OS.get_name() == "HTML5":
-		get_node("%MoveLeft").hide()
-		get_node("%MoveRight").hide()
-		get_node("%Menu").hide()
-		get_node("%Jump").hide()
-		get_node("%Shoot").hide()
-		get_node("%Restart").hide()
+	if OS.get_name() == "Windows":
+		hide_screen_controls()
+	elif OS.get_name() == "HTML5" and not is_smartphone_web():
+		hide_screen_controls()
 		
 	# Временное (?) решение вопроса с размерами кнопок
 	# для экранов с разрешением 1920х1080
 	if is_equal_approx(screen_aspect_ratio, PROBLEM_ASPECT_RATIO) \
 			or is_equal_approx(window_aspect_ratio, PROBLEM_ASPECT_RATIO):
-		downscale_screen()
+		# Уменьшаем размер игрового экрана, если игра запущена на смартфоне
+		if OS.get_name() == "Android" or OS.get_name() == "iOS" or is_smartphone_web():
+			downscale_screen()
 	
 	#prints(OS.get_window_size(), window_aspect_ratio, screen_aspect_ratio, 1920.0/1080.0, 1280.0/720.0)
 	
@@ -88,6 +86,21 @@ func _unhandled_input(_event):
 		Input.action_release("shoot")
 		Input.action_release("restart")
 		load_main_menu()
+
+
+# Проверка, не запущена ли игра на смартфоне в браузере
+func is_smartphone_web() -> bool:
+	return JavaScript.eval("/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)", true)
+
+
+# Скрываем кнопки управления
+func hide_screen_controls() -> void:
+	get_node("%MoveLeft").hide()
+	get_node("%MoveRight").hide()
+	get_node("%Menu").hide()
+	get_node("%Jump").hide()
+	get_node("%Shoot").hide()
+	get_node("%Restart").hide()
 
 
 # Подгоняем размер экрана игры и положение кнопок
@@ -230,7 +243,7 @@ func _on_level_selected(level_number: int):
 
 # Срабатывает при прохождении последнего уровня
 func _on_final_level_completed() -> void:
-	if OS.get_name() == "Android" and GameData.vibro_enabled:
+	if (OS.get_name() == "Android" or OS.get_name() == "HTML5") and GameData.vibro_enabled:
 		Input.vibrate_handheld(600)
 	can_restart = false
 	set_process_unhandled_input(false)
