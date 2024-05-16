@@ -33,6 +33,7 @@ var crate = preload(\"res://props/crate/crate.tscn\")
 
 func _ready():
 	if OS.get_name() == \"Android\":
+		# warning-ignore:return_value_discarded
 		$TextEdit.connect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
 		set_process_unhandled_key_input(false)
 
@@ -85,6 +86,7 @@ func _on_TextEdit_text_changed():
 		return
 	$TextEdit.disconnect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
 	$TextEdit.set_text(\"\")
+	# warning-ignore:return_value_discarded
 	$TextEdit.connect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
 "
 

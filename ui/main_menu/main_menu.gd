@@ -3,6 +3,7 @@ extends Control
 signal level_selected(level_number)
 signal about_pressed
 
+
 func _ready():
 	for button in get_tree().get_nodes_in_group("level_buttons"):
 		button.connect("pressed", self, "_on_level_pressed", [button.name])
@@ -11,6 +12,11 @@ func _ready():
 	get_node("%Music").pressed = GameData.music_enabled
 	get_node("%Sound").pressed = GameData.sound_enabled
 	get_node("%Vibration").pressed = GameData.vibro_enabled
+	
+	# Скрываем кнопку переключения вибрации, если игра запущена не на смартфоне
+	if OS.get_name() != "Android":
+		get_node("%Vibration").button_mask = 0
+		get_node("%Vibration").self_modulate.a = 0
 
 
 func activate_level_buttons() -> void:

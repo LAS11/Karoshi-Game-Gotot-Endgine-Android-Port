@@ -484,7 +484,6 @@ custom_constants/margin_right = 17
 
 [node name="Vibration" type="CheckBox" parent="Control/VBoxContainer"]
 unique_name_in_owner = true
-self_modulate = Color( 0.945098, 0.945098, 0.945098, 1 )
 margin_left = 146.0
 margin_right = 202.0
 margin_bottom = 56.0
@@ -492,6 +491,7 @@ focus_mode = 0
 custom_icons/checked = ExtResource( 36 )
 custom_icons/unchecked = ExtResource( 35 )
 pressed = true
+button_mask = 0
 expand_icon = true
 
 [node name="MarginContainer2" type="MarginContainer" parent="Control/VBoxContainer"]
