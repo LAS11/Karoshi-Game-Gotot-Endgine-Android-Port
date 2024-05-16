@@ -1,4 +1,4 @@
-# Karoshi-Game-Gotot-Endgine-Android-Port
+# Karoshi-1-Gotot-Port
  
 [ENG] A fan-port a game "Karoshi" to Godot Engine. It was developed in order to port it to Android platform.
 All the original levels and all gameplay elements were recreated. The port was developed with Godot 3.0.6 in 2019 and rewrote in 2023 from scratch with Godot 3.5.3-stable.
