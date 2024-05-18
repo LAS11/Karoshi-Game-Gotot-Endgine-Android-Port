@@ -32,10 +32,44 @@ var crate = preload(\"res://props/crate/crate.tscn\")
 
 
 func _ready():
-	if OS.get_name() == \"Android\":
-		# warning-ignore:return_value_discarded
-		$TextEdit.connect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
-		set_process_unhandled_key_input(false)
+	# Если игра запущена с ПК - отключаем спрятанное поле ввода
+	if loaded_on_pc():
+		$TextEdit.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+
+# Каждый кадр проверяем текст $TextEdit
+# это лучший вариант
+func _process(delta):
+	var text_entered: String = $TextEdit.get_text()
+	if k_array.find(text_entered) != -1:
+		OS.hide_virtual_keyboard()
+		$TextEdit.mouse_filter = Control.MOUSE_FILTER_IGNORE
+		spawn_big_crate()
+		set_process(false)
+	$TextEdit.set_text(\"\")
+
+
+func _unhandled_key_input(event):
+	if loaded_on_pc():
+		var key_pressed: int = event.physical_scancode
+		if key_pressed == KEY_K:
+			set_process_unhandled_key_input(false)
+			spawn_big_crate()
+
+
+# Очищаем сцену от заспавненых ящиков - они не удаляются при рестарте сцены
+func _exit_tree():
+	get_tree().call_group(\"crates\", \"queue_free\")
+
+
+func loaded_on_pc() -> bool:
+	var os_name := OS.get_name() 
+	return os_name == \"Windows\" or (OS.get_name() == \"HTML5\" and not is_smartphone_web())
+
+
+# Проверка, не запущена ли игра на смартфоне в браузере
+func is_smartphone_web() -> bool:
+	return JavaScript.eval(\"/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)\", true)
 
 
 func spawn_big_crate():
@@ -44,50 +78,6 @@ func spawn_big_crate():
 	n.position = Vector2(64, -64)
 	call_deferred(\"add_child\", n)
 	print(\"spawn a crate\")
-
-
-# Очищаем сцену от заспавненых ящиков - они не удаляются при рестарте сцены
-func _exit_tree():
-	get_tree().call_group(\"crates\", \"queue_free\")
-
-
-func _on_Button_pressed():
-	print(\"K was pressed\")
-	OS.show_virtual_keyboard()
-
-
-func _unhandled_key_input(event):
-	match OS.get_name():
-		\"Android\":
-			pass
-			# На Android отслеживаем unicode нажатой буквы клавиатуры
-			# (Требуется англ. или рус. раскладка)
-#			var key_pressed: String = char(event.unicode)
-#
-#			if key_pressed == 'k' or key_pressed == 'K' or key_pressed == 'к' or key_pressed == 'К':
-#				set_process_unhandled_key_input(false)
-#				OS.hide_virtual_keyboard()
-#				$Button.set_disabled(true)
-#				spawn_big_crate()
-		# На Windows отслеживаем код физической клавиатуры - поддерживается любой язык
-		\"Windows\":
-			var key_pressed: int = event.physical_scancode
-			if key_pressed == KEY_K:
-				set_process_unhandled_key_input(false)
-				spawn_big_crate()
-
-
-func _on_TextEdit_text_changed():
-	var text_entered: String = $TextEdit.get_text()
-	if k_array.find(text_entered) != -1:
-		OS.hide_virtual_keyboard()
-		spawn_big_crate()
-		$TextEdit.disconnect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
-		return
-	$TextEdit.disconnect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
-	$TextEdit.set_text(\"\")
-	# warning-ignore:return_value_discarded
-	$TextEdit.connect(\"text_changed\", self, \"_on_TextEdit_text_changed\")
 "
 
 [sub_resource type="TileSet" id=1]
@@ -400,24 +390,15 @@ tile_data = PoolIntArray( 262148, -1610612734, 0, 262149, -1610612734, 0, 262150
 [node name="Player" parent="LevelTemplate" index="3"]
 position = Vector2( 32, 400 )
 
-[node name="Button" type="Button" parent="."]
-visible = false
+[node name="TextEdit" type="TextEdit" parent="."]
+self_modulate = Color( 1, 1, 1, 0 )
 margin_left = 128.0
 margin_top = 128.0
 margin_right = 384.0
 margin_bottom = 448.0
-focus_mode = 0
-mouse_filter = 1
-disabled = true
-enabled_focus_mode = 0
-
-[node name="TextEdit" type="TextEdit" parent="."]
-self_modulate = Color( 1, 1, 1, 0 )
-margin_left = 129.0
-margin_top = 127.0
-margin_right = 386.0
-margin_bottom = 452.0
-
-[connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
+mouse_default_cursor_shape = 0
+context_menu_enabled = false
+shortcut_keys_enabled = false
+selecting_enabled = false
 
 [editable path="LevelTemplate"]
