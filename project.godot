@@ -1,13 +1,6 @@
-; Engine configuration file.
-; It's best edited using the editor UI and not directly,
-; since the parameters that go here are not all obvious.
-;
-; Format:
-;   [section] ; section goes between []
-;   param=value ; assign values to parameters
+[]
 
 config_version=4
-
 _global_script_classes=[ {
 "base": "KinematicBody2D",
 "class": "Boss",
@@ -68,7 +61,7 @@ _global_script_class_icons={
 
 [application]
 
-config/name="Karoshi 1 (Godot Port)"
+config/name="Karoshi 1 (Android Port)"
 run/main_scene="res://main_scene.tscn"
 boot_splash/image="res://ui/bg_intro2_fullhd.png"
 boot_splash/fullsize=false
